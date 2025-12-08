@@ -15,8 +15,6 @@ export async function GET(request: NextRequest) {
       ?.value as string;
 
     const tokens = await google.validateAuthorizationCode(code, codeVerifier);
-    // const accessToken = tokens.accessToken();
-    // const accessTokenExpiresAt = tokens.accessTokenExpiresAt();
 
     const idToken = tokens.idToken();
     const idTokenClaims = decodeIdToken(idToken) as {
@@ -60,8 +58,6 @@ export async function GET(request: NextRequest) {
     }
 
     await createSessionToken(userId);
-
-    redirect("/");
   } catch (error) {
     if (error instanceof OAuth2RequestError) {
       console.error(error);
@@ -76,4 +72,6 @@ export async function GET(request: NextRequest) {
 
     return Response.json({ error: "An error occurred" }, { status: 500 });
   }
+
+  redirect("/");
 }

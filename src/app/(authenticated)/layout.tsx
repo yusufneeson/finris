@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { redirect } from "next/navigation";
 import { getUser } from "@RSV/lib/auth/get-user";
+import Providers from "@RSV/components/Providers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Providers user={user}>{children}</Providers>
       </body>
     </html>
   );

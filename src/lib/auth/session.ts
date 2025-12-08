@@ -26,6 +26,9 @@ export async function createSessionToken(userId: number): Promise<string> {
     sameSite: "strict",
   });
 
+  cookieStore.delete("rsv_google_auth_state");
+  cookieStore.delete("rsv_google_auth_code_verifier");
+
   await db.insert(sessions).values({
     id: hashedToken,
     userId: userId,

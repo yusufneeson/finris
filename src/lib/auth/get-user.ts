@@ -1,12 +1,11 @@
 "use server";
 
 import { db } from "../db";
-import { destroySession, getCurrentSession } from "./session";
+import { getCurrentSession } from "./session";
 
 export async function getUser() {
   const session = await getCurrentSession();
   if (!session) {
-    await destroySession();
     return null;
   }
 

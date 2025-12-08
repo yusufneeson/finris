@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
+import { getUser } from "@RSV/lib/auth/get-user";
+import { redirect } from "next/navigation";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,11 +19,15 @@ export const metadata: Metadata = {
   description: "Finance Resource Information System",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const user = await getUser();
+  if (user) {
+    redirect("/");
+  }
   return (
     <html lang="en">
       <body
