@@ -1,5 +1,4 @@
+import { User } from "@RSV/types/db";
 import { createContext } from "react";
 
-export const UserContext = createContext(
-  {} as { id: number; googleId: string; email: string; name: string } | null,
-);
+export const UserContext = createContext<User | null>(null);
