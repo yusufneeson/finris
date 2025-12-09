@@ -58,6 +58,8 @@ export async function GET(request: NextRequest) {
     }
 
     await createSessionToken(userId);
+
+    return Response.redirect("/")
   } catch (error) {
     if (error instanceof OAuth2RequestError) {
       console.error(error);
@@ -72,6 +74,4 @@ export async function GET(request: NextRequest) {
 
     return Response.json({ error: "An error occurred" }, { status: 500 });
   }
-
-  redirect("/");
 }
