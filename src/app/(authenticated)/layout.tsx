@@ -38,7 +38,7 @@ export default async function RootLayout({
       >
         <Providers user={user}>
           <div className="bg-gray-50 w-full h-full flex justify-center items-center">
-            <div className="bg-linear-to-r from-green-50 from-10% via-lime-100 via-60% to-emerald-200/50 min-w-[450px] min-h-screen border-green-100 border shadow-xl rounded-xl py-4 px-4">
+            <div className="bg-linear-to-br from-green-50 from-10% via-lime-100 via-50% to-emerald-200/50 min-w-[450px] min-h-screen border-green-100 border shadow-xl rounded-xl py-4 px-4">
               {children}
             </div>
           </div>
