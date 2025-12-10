@@ -38,7 +38,7 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Providers user={user}>
-          <div className="bg-gray-50 dark:bg-gray-900 w-full h-full flex justify-center items-center">
+          <div className="bg-gray-50 dark:bg-neutral-900 w-full h-full flex justify-center items-center">
             <div
               className="
               dark:bg-linear-to-br dark:from-[#03120d] dark:via-[#03120d] dark:to-[#03120d]
