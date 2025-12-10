@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "arctic": "^3.7.0",
+    "decimal": "^0.0.2",
     "drizzle-orm": "^1.0.0-beta.2-86f844e",
     "lucide-react": "^0.556.0",
     "next": "16.0.7",

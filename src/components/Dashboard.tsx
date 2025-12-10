@@ -1,18 +1,14 @@
 "use client";
 
-import { UserContext } from "@RSV/lib/user-context";
 import { BellDot, CircleUser } from "lucide-react";
-import { useContext } from "react";
 import BalanceCard from "./BalanceCard";
 import AccountsCard from "./AccountsCard";
+import { User, Account } from "@RSV/types/db";
 
-export default function Dashboard() {
-  const user = useContext(UserContext);
-
+export default function Dashboard({ user, accounts, balance } : {user: User, accounts: Account[], balance: bigint}) {
   const accountBalance = {
-    balance: 89500250,
-    income: 21432467,
-    expense: 31862652,
+    income: 21432467n,
+    expense: 31862652n,
   };
 
   return (
@@ -30,12 +26,12 @@ export default function Dashboard() {
       </div>
 
       <BalanceCard
-        balance={accountBalance.balance}
+        balance={balance}
         income={accountBalance.income}
         expense={accountBalance.expense}
       />
 
-      <AccountsCard />
+      <AccountsCard accounts={accounts} />
 
       <div className="mt-6">
         <div className="flex justify-between items-center px-4">

@@ -1,6 +1,8 @@
+import { formatRupiah } from "@RSV/lib/rupiah";
+import { Account } from "@RSV/types/db";
 import { Banknote, Landmark, Wallet } from "lucide-react";
 
-export default function AccountsCard() {
+export default function AccountsCard({accounts} : {accounts: Account[]}) {
   return (
     <div className="mt-6">
       <div className="flex justify-between items-center px-4">
@@ -10,14 +12,18 @@ export default function AccountsCard() {
         </span>
       </div>
       <div className="bg-white dark:bg-[#252525] rounded-2xl mt-2 flex flex-col gap-3 p-4">
-        <div className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-2xl">
-          <div className="flex gap-1.5 items-center">
-            <Landmark />
-            <span className="font-bold">BCA</span>
+        {accounts.map((a, i) => (
+          <div key={i} className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-2xl">
+            <div className="flex gap-1.5 items-center">
+              <Landmark />
+              <span className="font-bold">{a.name}</span>
+            </div>
+            <span className="font-bold">{formatRupiah(a.balance)}</span>
           </div>
-          <span className="font-bold">75.000.000</span>
-        </div>
-        <div className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-xl">
+        ))}
+
+
+        {/*<div className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-xl">
           <div className="flex gap-1.5 items-center">
             <Wallet />
             <span className="font-bold">Gopay</span>
@@ -30,7 +36,10 @@ export default function AccountsCard() {
             <span className="font-bold">Cash</span>
           </div>
           <span className="font-bold">0</span>
-        </div>
+        </div>*/}
+
+
+
       </div>
     </div>
   );
