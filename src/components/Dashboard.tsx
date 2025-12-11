@@ -3,9 +3,11 @@
 import { BellDot, CircleUser } from "lucide-react";
 import BalanceCard from "./BalanceCard";
 import AccountsCard from "./AccountsCard";
-import { User, Account } from "@RSV/types/db";
+import { User, Account, Transaction } from "@RSV/types/db";
+import { formatRupiah } from "@RSV/lib/rupiah";
+import { TransactionWithRelations } from "@RSV/lib/transactions";
 
-export default function Dashboard({ user, accounts, balance } : {user: User, accounts: Account[], balance: bigint}) {
+export default function Dashboard({ user, accounts, balance, transactions } : {user: User, accounts: Account[], balance: bigint, transactions: TransactionWithRelations[]}) {
   const accountBalance = {
     income: 21432467n,
     expense: 31862652n,
@@ -42,42 +44,27 @@ export default function Dashboard({ user, accounts, balance } : {user: User, acc
         </div>
 
         <div className="bg-white dark:bg-[#252525] rounded-2xl mt-2 flex flex-col gap-3 p-4">
-          <div className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-2xl">
-            <div className="flex gap-1.5 items-center">
-              <span className="font-bold">BCA</span>
+          {transactions.map((t, i) => (
+            <div key={i} className="flex flex-col items-center gap-3.5">
+              <div className="flex justify-between items-center gap-4 w-full">
+                <div className="font-semibold flex-1">{t?.account!.name}</div>
+                <div className="flex flex-col gap-1 text-left flex-5">
+                  <span className="font-semibold">{t.description}</span>
+                  <div className="flex items-center gap-1">
+                    <span className="text-neutral-500 text-sm">Lain Lain</span>
+                    <div className="w-1 h-1 rounded-full bg-gray-500"></div>
+                    <span className="text-neutral-500 text-sm">11 Des</span>
+                  </div>
+                </div>
+                <div className="font-semibold flex-2">
+                  {formatRupiah(t.amount)}
+                </div>
+              </div>
+              {i%transactions.length == 0 && (
+              <div className="w-[90%] border-b border-neutral-300 rounded-full"></div>
+              )}
             </div>
-            <span className="font-bold">75.000.000</span>
-          </div>
-          <div className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-xl">
-            <div className="flex gap-1.5 items-center">
-              <span className="font-bold">Gopay</span>
-            </div>
-            <span className="font-bold">10.450.000</span>
-          </div>
-          <div className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-xl">
-            <div className="flex gap-1.5 items-center">
-              <span className="font-bold">Cash</span>
-            </div>
-            <span className="font-bold">0</span>
-          </div>
-          <div className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-xl">
-            <div className="flex gap-1.5 items-center">
-              <span className="font-bold">Cash</span>
-            </div>
-            <span className="font-bold">0</span>
-          </div>
-          <div className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-xl">
-            <div className="flex gap-1.5 items-center">
-              <span className="font-bold">Cash</span>
-            </div>
-            <span className="font-bold">0</span>
-          </div>
-          <div className="flex justify-between border border-gray-200 dark:border-[#4d4d4d] p-3 rounded-xl">
-            <div className="flex gap-1.5 items-center">
-              <span className="font-bold">Cash</span>
-            </div>
-            <span className="font-bold">0</span>
-          </div>
+          ))}
         </div>
       </div>
     </div>
