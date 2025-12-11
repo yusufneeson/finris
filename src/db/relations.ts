@@ -33,11 +33,11 @@ export const relations = defineRelations(schema, (r) => ({
       from: r.transactions.userId,
       to: r.users.id,
     }),
-    accounts: r.one.accounts({
+    account: r.one.accounts({
       from: r.transactions.accountId,
       to: r.accounts.id,
     }),
-    categories: r.one.categories({
+    category: r.one.categories({
       from: r.transactions.categoryId,
       to: r.categories.id,
     }),
