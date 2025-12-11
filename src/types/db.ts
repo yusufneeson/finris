@@ -1,5 +1,7 @@
-import { accounts, users } from "@RSV/db/schema";
+import { accounts, transactions, users } from "@RSV/db/schema";
 import { InferSelectModel } from "drizzle-orm";
 
 export type User = InferSelectModel<typeof users>;
 export type Account = InferSelectModel<typeof accounts>;
+export type Transaction = InferSelectModel<typeof transactions>;
+export type TransactionAll = InferSelectModel<typeof transactions>
