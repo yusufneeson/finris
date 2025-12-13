@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { getUser } from "@RSV/lib/auth/get-user";
 import { redirect } from "next/navigation";
+import { getCurrentSession } from "@RSV/lib/auth/session";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -24,8 +25,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const user = await getUser();
-  if (user) {
+  const session = await getCurrentSession();
+  if (session) {
     redirect("/");
   }
   return (
